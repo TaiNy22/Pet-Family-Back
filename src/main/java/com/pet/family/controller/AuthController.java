@@ -85,7 +85,6 @@ public class AuthController {
         instance.setName(signUpRequest.getName());
         instance.setLastname(signUpRequest.getLastname());
         instance.setPassword(encoder.encode(signUpRequest.getPassword()));
-        instance.setCity(signUpRequest.getCity());
         instance.setPhone(signUpRequest.getPhone());
         instance.setEmail(signUpRequest.getEmail());
 

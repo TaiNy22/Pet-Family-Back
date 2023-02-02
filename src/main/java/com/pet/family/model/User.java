@@ -41,9 +41,6 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "city")
-    private String city;
-
     @NotBlank
     @Column(name = "password")
     private String password;

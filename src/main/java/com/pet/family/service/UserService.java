@@ -54,7 +54,6 @@ public class UserService implements IUserService {
         instance.setLastname(input.getLastname());
         instance.setPassword(encoder.encode(input.getPassword()));
         instance.setEmail(input.getEmail());
-        instance.setCity(input.getCity());
         instance.setPhone(input.getPhone());
 
         Set<String> strRoles = new HashSet<>();
@@ -95,7 +94,6 @@ public class UserService implements IUserService {
         instance.setPassword(encoder.encode(input.getPassword()));
         instance.setEmail(input.getEmail());
         instance.setPhone(input.getPhone());
-        instance.setCity(input.getCity());
 
         Set<String> strRoles = new HashSet<>();
         strRoles.add(input.getRole());
