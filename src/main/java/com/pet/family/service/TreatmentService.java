@@ -1,11 +1,8 @@
 package com.pet.family.service;
 
 import com.pet.family.model.Treatment;
-import com.pet.family.model.Vaccine;
 import com.pet.family.payload.request.TreatmentRequest;
-import com.pet.family.payload.request.VaccineRequest;
 import com.pet.family.repository.TreatmentRepository;
-import com.pet.family.repository.VaccineRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
