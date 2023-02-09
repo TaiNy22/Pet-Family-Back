@@ -60,6 +60,12 @@ public class TipController {
             case "bird":
                 tipType = TipType.BIRD;
                 break;
+            case "fish":
+                tipType = TipType.FISH;
+                break;
+            default:
+                tipType = TipType.ALL;
+                break;
         }
 
         return tipService.findByType(tipType);
