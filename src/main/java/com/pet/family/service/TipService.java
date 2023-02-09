@@ -1,7 +1,7 @@
 package com.pet.family.service;
 
 import com.pet.family.model.Tip;
-import com.pet.family.model.TipType;
+import com.pet.family.model.PetType;
 import com.pet.family.payload.request.TipRequest;
 import com.pet.family.repository.TipRepository;
 import org.springframework.stereotype.Service;
@@ -55,7 +55,7 @@ public class TipService implements ITipService {
     }
 
     @Override
-    public List<Tip> findByType(TipType input) {
+    public List<Tip> findByType(PetType input) {
         return tipRepository.findTipByType(input);
     }
 }

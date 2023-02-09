@@ -1,6 +1,5 @@
 package com.pet.family.payload.response;
 
-import com.pet.family.model.TipType;
 import lombok.Getter;
 import lombok.Setter;
 

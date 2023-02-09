@@ -12,20 +12,32 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "tips")
-public class Tip {
+@Table(name = "reminders")
+public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "content")
-    private String content;
+    @Column(name = "age")
+    private Long age;
+
+    @Column(name = "gender")
+    private String gender;
+
+    @Column(name = "weight")
+    private String weight;
 
     @Column(name = "type")
     private PetType type;
+
+    @Column(name = "sterilization")
+    private Boolean sterilization;
+
+    @Column(name = "avatar")
+    private String avatar;
 
     @Column(name = "createddate", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

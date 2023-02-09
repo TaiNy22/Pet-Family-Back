@@ -3,7 +3,7 @@ package com.pet.family.model;
 /**
  * @author Tainy
  */
-public enum TipType {
+public enum PetType {
     ALL,
     BIRD,
     CAT,

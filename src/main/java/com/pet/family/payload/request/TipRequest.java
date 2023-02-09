@@ -1,6 +1,6 @@
 package com.pet.family.payload.request;
 
-import com.pet.family.model.TipType;
+import com.pet.family.model.PetType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,5 +14,5 @@ public class TipRequest {
 
     private String title;
 
-    private String type;
+    private PetType type;
 }

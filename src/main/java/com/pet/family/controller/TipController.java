@@ -1,7 +1,7 @@
 package com.pet.family.controller;
 
 import com.pet.family.model.Tip;
-import com.pet.family.model.TipType;
+import com.pet.family.model.PetType;
 import com.pet.family.payload.request.TipRequest;
 import com.pet.family.service.TipService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,28 +46,28 @@ public class TipController {
 
     @GetMapping("/type")
     public List<Tip> getByType(@RequestBody String input) {
-        TipType tipType = TipType.ALL;
+        PetType petType = PetType.ALL;
         switch (input) {
             case "dog":
-                tipType = TipType.DOG;
+                petType = PetType.DOG;
                 break;
             case "cat":
-                tipType = TipType.CAT;
+                petType = PetType.CAT;
                 break;
             case "mouse":
-                tipType = TipType.MOUSE;
+                petType = PetType.MOUSE;
                 break;
             case "bird":
-                tipType = TipType.BIRD;
+                petType = PetType.BIRD;
                 break;
             case "fish":
-                tipType = TipType.FISH;
+                petType = PetType.FISH;
                 break;
             default:
-                tipType = TipType.ALL;
+                petType = PetType.ALL;
                 break;
         }
 
-        return tipService.findByType(tipType);
+        return tipService.findByType(petType);
     }
 }
