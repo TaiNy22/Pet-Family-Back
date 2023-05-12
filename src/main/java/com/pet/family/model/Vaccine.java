@@ -1,5 +1,6 @@
 package com.pet.family.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,6 +31,11 @@ public class Vaccine {
     @Column(name = "createddate", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
 
     @PrePersist
     void onPrePersist() {

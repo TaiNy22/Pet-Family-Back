@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -49,14 +50,20 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
-    @PrePersist
-    void onPrePersist() {
-        this.createdDate = new Date();
-    }
-
     @ManyToMany()
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pet> pets;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reminder> reminders;
+
+    @PrePersist
+    void onPrePersist() {
+        this.createdDate = new Date();
+    }
 }

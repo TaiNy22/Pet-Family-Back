@@ -1,8 +1,11 @@
 package com.pet.family.service;
 
 import com.pet.family.model.Pet;
+import com.pet.family.model.User;
 import com.pet.family.payload.request.PetRequest;
 import com.pet.family.repository.PetRepository;
+import com.pet.family.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +15,11 @@ import java.util.List;
  */
 @Service
 public class PetService implements IPetService {
+    @Autowired
     private PetRepository petRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public PetService(PetRepository petRepository) {
         this.petRepository = petRepository;
@@ -44,6 +51,9 @@ public class PetService implements IPetService {
         instance.setWeight(input.getWeight());
         instance.setType(input.getType());
 
+        User user = userRepository.findById(input.getUserId()).orElse(null);
+        instance.setUser(user);
+
         return petRepository.save(instance);
     }
 
@@ -59,5 +69,12 @@ public class PetService implements IPetService {
         instance.setType(input.getType());
 
         return petRepository.save(instance);
+    }
+
+    @Override
+    public List<Pet> petsByUserId(Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+
+        return petRepository.findPetByUser(user);
     }
 }

@@ -18,4 +18,6 @@ public interface IPetService {
     public Pet save(PetRequest input);
 
     public Pet update(Long id, PetRequest input);
+
+    List<Pet> petsByUserId(Long userId);
 }

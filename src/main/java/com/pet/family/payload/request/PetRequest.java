@@ -4,8 +4,6 @@ import com.pet.family.model.PetType;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-
 /**
  * @author Tainy
  */
@@ -23,6 +21,8 @@ public class PetRequest {
     private Boolean sterilization;
 
     private PetType type;
+
+    private Long userId;
 
     private String weight;
 }

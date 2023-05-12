@@ -110,9 +110,11 @@ public class AuthController {
                 }
             });
         }
-
         instance.setRoles(roles);
         userRepository.save(instance);
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+
+        return ResponseEntity.ok(new LoginRequest(
+                signUpRequest.getUsername(),
+                signUpRequest.getPassword()));
     }
 }

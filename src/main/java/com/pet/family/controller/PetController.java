@@ -33,9 +33,14 @@ public class PetController {
         return petService.findAll();
     }
 
+    @GetMapping(value = "/user/{userId}")
+    public List<Pet> getByUserId(@PathVariable("userId") Long userId) {
+        return petService.petsByUserId(userId);
+    }
+
     @PostMapping
-    public Pet create(@RequestBody PetRequest input) {
-        return petService.save(input);
+    public void create(@RequestBody PetRequest input) {
+        petService.save(input);
     }
 
     @PutMapping(value = "/{petId}")
