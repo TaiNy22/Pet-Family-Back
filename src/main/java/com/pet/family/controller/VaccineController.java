@@ -34,6 +34,11 @@ public class VaccineController {
         return vaccineService.findAll();
     }
 
+    @GetMapping(value = "/pet/{petId}")
+    public List<Vaccine> getByPetId(@PathVariable("petId") Long petId) {
+        return vaccineService.vaccinesByPetId(petId);
+    }
+
     @PostMapping
     public Vaccine create(@RequestBody VaccineRequest input) {
         return vaccineService.save(input);

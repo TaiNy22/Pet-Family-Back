@@ -16,4 +16,6 @@ public class VaccineRequest {
     private boolean done;
 
     private Date date;
+
+    private Long petId;
 }

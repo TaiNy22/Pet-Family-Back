@@ -18,4 +18,6 @@ public interface IVaccineService {
     public Vaccine save(VaccineRequest input);
 
     public Vaccine update(Long id, VaccineRequest input);
+
+    List<Vaccine> vaccinesByPetId(Long petId);
 }
