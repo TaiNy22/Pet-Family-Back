@@ -18,4 +18,6 @@ public interface ITreatmentService {
     public Treatment save(TreatmentRequest input);
 
     public Treatment update(Long id, TreatmentRequest input);
+
+    List<Treatment> treatmentsByPetId(Long petId);
 }

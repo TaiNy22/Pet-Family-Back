@@ -17,8 +17,6 @@ public class TreatmentResponse {
 
     private String description;
 
-    private Long hours;
-
     private String title;
 
     private Date createdDate;

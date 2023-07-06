@@ -28,9 +28,6 @@ public class Treatment {
     @Column(name = "date")
     private Date date;
 
-    @Column(name = "hours")
-    private Long hours;
-
     @Column(name = "createddate", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;

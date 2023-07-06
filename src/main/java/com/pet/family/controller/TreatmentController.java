@@ -33,6 +33,11 @@ public class TreatmentController {
         return treatmentService.findAll();
     }
 
+    @GetMapping(value = "/pet/{petId}")
+    public List<Treatment> getByPetId(@PathVariable("petId") Long petId) {
+        return treatmentService.treatmentsByPetId(petId);
+    }
+
     @PostMapping
     public Treatment create(@RequestBody TreatmentRequest input) {
         return treatmentService.save(input);
