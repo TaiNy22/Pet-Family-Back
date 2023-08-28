@@ -68,6 +68,9 @@ public class PetService implements IPetService {
         instance.setWeight(input.getWeight());
         instance.setType(input.getType());
 
+        User user = userRepository.findById(input.getUserId()).orElse(null);
+        instance.setUser(user);
+
         return petRepository.save(instance);
     }
 

@@ -1,11 +1,13 @@
 package com.pet.family.service;
 
-import com.pet.family.model.Tip;
 import com.pet.family.model.PetType;
+import com.pet.family.model.Tip;
 import com.pet.family.payload.request.TipRequest;
 import com.pet.family.repository.TipRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -14,6 +16,9 @@ import java.util.List;
 @Service
 public class TipService implements ITipService {
     private TipRepository tipRepository;
+
+    @Autowired
+    private UploadFileService uploadFileService;
 
     public TipService(TipRepository tipRepository) {
         this.tipRepository = tipRepository;
@@ -35,11 +40,20 @@ public class TipService implements ITipService {
     }
 
     @Override
-    public Tip save(TipRequest input) {
+    public Tip save(TipRequest input) throws IOException {
         Tip instance = new Tip();
         instance.setContent(input.getContent());
         instance.setTitle(input.getTitle());
         instance.setType(input.getType());
+
+        if (!input.getImage().isEmpty()) {
+            if (input.getImage() != null) {
+                uploadFileService.delete(input.getTitle());
+            }
+        }
+
+        String uniqueFileName = uploadFileService.copy(input.getImage());
+        instance.setImage(uniqueFileName);
 
         return tipRepository.save(instance);
     }

@@ -7,6 +7,7 @@ import com.pet.family.service.TipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ public class TipController {
     }
 
     @PostMapping
-    public Tip create(@RequestBody TipRequest input) {
+    public Tip create(@RequestBody TipRequest input) throws IOException {
         return tipService.save(input);
     }
 

@@ -4,6 +4,7 @@ import com.pet.family.model.Tip;
 import com.pet.family.model.PetType;
 import com.pet.family.payload.request.TipRequest;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public interface ITipService {
 
     public List<Tip> findAll();
 
-    public Tip save(TipRequest input);
+    public Tip save(TipRequest input) throws IOException;
 
     public Tip update(Long id, TipRequest input);
 
