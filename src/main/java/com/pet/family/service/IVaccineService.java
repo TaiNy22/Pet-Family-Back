@@ -2,6 +2,7 @@ package com.pet.family.service;
 
 import com.pet.family.model.Vaccine;
 import com.pet.family.payload.request.VaccineRequest;
+import com.pet.family.payload.response.VaccineResponse;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface IVaccineService {
 
     public void deleteById(Long id);
 
-    public List<Vaccine> findAll();
+    public List<VaccineResponse> findAll();
 
     public Vaccine save(VaccineRequest input);
 

@@ -2,6 +2,7 @@ package com.pet.family.controller;
 
 import com.pet.family.model.Vaccine;
 import com.pet.family.payload.request.VaccineRequest;
+import com.pet.family.payload.response.VaccineResponse;
 import com.pet.family.service.VaccineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class VaccineController {
     }
 
     @GetMapping
-    public List<Vaccine> list() {
+    public List<VaccineResponse> list() {
         return vaccineService.findAll();
     }
 

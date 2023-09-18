@@ -80,7 +80,7 @@ public class TaskService implements ITaskService {
             itemInstance.setDone(input.getItems().get(i).getDone());
             itemInstance.setDescription(input.getItems().get(i).getDescription());
             itemInstance.setTask(instance);
-            System.out.println(input.getItems().get(i).getId() != null);
+
             if (input.getItems().get(i).getId() == null) {
                 itemTaskService.save(itemInstance);
             } else {

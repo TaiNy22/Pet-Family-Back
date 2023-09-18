@@ -3,11 +3,13 @@ package com.pet.family.service;
 import com.pet.family.model.Pet;
 import com.pet.family.model.Vaccine;
 import com.pet.family.payload.request.VaccineRequest;
+import com.pet.family.payload.response.VaccineResponse;
 import com.pet.family.repository.PetRepository;
 import com.pet.family.repository.VaccineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,8 +37,29 @@ public class VaccineService implements IVaccineService {
     }
 
     @Override
-    public List<Vaccine> findAll() {
-        return vaccineRepository.findAll();
+    public List<VaccineResponse> findAll() {
+        List<Pet> pets = petRepository.findAll();
+
+        List<VaccineResponse> vaccineResponses = new ArrayList<>();
+
+        pets.forEach(pet -> {
+            List<Vaccine> vaccines = vaccineRepository.findVaccinesByPet(pet);
+
+            vaccines.forEach(vaccine -> {
+                VaccineResponse instance = new VaccineResponse();
+
+                instance.setId(vaccine.getId());
+                instance.setType(vaccine.getType());
+                instance.setDone(vaccine.isDone());
+                instance.setCreatedDate(vaccine.getCreatedDate());
+                instance.setDate(vaccine.getDate());
+                instance.setPet(pet);
+
+                vaccineResponses.add(instance);
+            });
+        });
+
+        return vaccineResponses;
     }
 
     @Override
