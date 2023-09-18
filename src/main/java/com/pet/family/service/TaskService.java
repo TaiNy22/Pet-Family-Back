@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +19,9 @@ import java.util.List;
 public class TaskService implements ITaskService {
 
     private TaskRepository taskRepository;
+
+    @Autowired
+    private ItemTaskService itemTaskService;
 
     @Autowired
     private UserRepository userRepository;
@@ -47,32 +49,44 @@ public class TaskService implements ITaskService {
     public Task save(TaskRequest input) throws IOException {
         Task instance = new Task();
         instance = taskRepository.save(instance);
-
         instance.setTitle(input.getTitle());
+
         User user = userRepository.findById(input.getUserId()).orElse(null);
         instance.setUser(user);
+        int i = 0;
+        while (i < input.getItems().size()) {
+            ItemTask itemInstance = new ItemTask();
+            itemInstance.setDone(input.getItems().get(i).getDone());
+            itemInstance.setDescription(input.getItems().get(i).getDescription());
+            itemInstance.setTask(instance);
 
-        List<ItemTask> items = new ArrayList<>();
-        for (int i = 0; i < input.getItems().size(); i++) {
-            ItemTask item = input.getItems().get(i);
-            item.setTask(instance);
-            items.add(item);
+            itemTaskService.save(itemInstance);
+            i++;
         }
-
-        instance.setItems(items);
 
         return taskRepository.save(instance);
     }
 
     @Override
-    public Task update(Long id, TaskRequest input) {
+    public Task update(Long id, TaskRequest input) throws IOException {
         Task instance = taskRepository.findById(id).orElse(null);
-
         instance.setTitle(input.getTitle());
-//        instance.setItems(input.getItems());
 
         User user = userRepository.findById(input.getUserId()).orElse(null);
         instance.setUser(user);
+
+        for (int i = 0; i < input.getItems().size(); i++) {
+            ItemTask itemInstance = new ItemTask();
+            itemInstance.setDone(input.getItems().get(i).getDone());
+            itemInstance.setDescription(input.getItems().get(i).getDescription());
+            itemInstance.setTask(instance);
+            System.out.println(input.getItems().get(i).getId() != null);
+            if (input.getItems().get(i).getId() == null) {
+                itemTaskService.save(itemInstance);
+            } else {
+                itemTaskService.update(input.getItems().get(i).getId(), itemInstance);
+            }
+        }
 
         return taskRepository.save(instance);
     }

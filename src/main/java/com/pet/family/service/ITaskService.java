@@ -18,7 +18,7 @@ public interface ITaskService {
 
     public Task save(TaskRequest input) throws IOException;
 
-    public Task update(Long id, TaskRequest input);
+    public Task update(Long id, TaskRequest input) throws IOException;
 
     public List<Task> tasksByUserId(Long userId);
 }

@@ -45,7 +45,7 @@ public class TaskController {
     }
 
     @PutMapping(value = "/{taskId}")
-    public Task update(@PathVariable("taskId") Long taskId, @RequestBody TaskRequest input) {
+    public Task update(@PathVariable("taskId") Long taskId, @RequestBody TaskRequest input) throws IOException {
         return taskService.update(taskId, input);
     }
 }
