@@ -1,5 +1,6 @@
 package com.pet.family.payload.response;
 
+import com.pet.family.model.Pet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,4 +21,6 @@ public class TreatmentResponse {
     private String title;
 
     private Date createdDate;
+
+    private Pet pet;
 }

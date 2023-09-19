@@ -46,7 +46,7 @@ public class VaccineController {
     }
 
     @PutMapping(value = "/{vaccineId}")
-    public Vaccine update(@PathVariable("vaccineId") Long vaccineId, @RequestBody VaccineRequest input) {
+    public VaccineResponse update(@PathVariable("vaccineId") Long vaccineId, @RequestBody VaccineRequest input) {
         return vaccineService.update(vaccineId, input);
     }
 }

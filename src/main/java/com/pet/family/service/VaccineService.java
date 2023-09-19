@@ -76,7 +76,7 @@ public class VaccineService implements IVaccineService {
     }
 
     @Override
-    public Vaccine update(Long id, VaccineRequest input) {
+    public VaccineResponse update(Long id, VaccineRequest input) {
         Vaccine instance = vaccineRepository.findById(id).orElse(null);
         instance.setDate(input.getDate());
         instance.setDone(input.isDone());
@@ -85,7 +85,16 @@ public class VaccineService implements IVaccineService {
         Pet pet = petRepository.findById(input.getPetId()).orElse(null);
         instance.setPet(pet);
 
-        return vaccineRepository.save(instance);
+        vaccineRepository.save(instance);
+
+        VaccineResponse response = new VaccineResponse();
+        response.setId(instance.getId());
+        response.setDate(instance.getDate());
+        response.setDone(instance.isDone());
+        response.setPet(pet);
+        response.setType(instance.getType());
+
+        return response;
     }
 
     @Override

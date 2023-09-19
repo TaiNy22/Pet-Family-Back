@@ -2,6 +2,7 @@ package com.pet.family.controller;
 
 import com.pet.family.model.Treatment;
 import com.pet.family.payload.request.TreatmentRequest;
+import com.pet.family.payload.response.TreatmentResponse;
 import com.pet.family.service.TreatmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class TreatmentController {
     }
 
     @GetMapping
-    public List<Treatment> list() {
+    public List<TreatmentResponse> list() {
         return treatmentService.findAll();
     }
 
@@ -44,7 +45,7 @@ public class TreatmentController {
     }
 
     @PutMapping(value = "/{treatmentId}")
-    public Treatment update(@PathVariable("treatmentId") Long treatmentId, @RequestBody TreatmentRequest input) {
+    public TreatmentResponse update(@PathVariable("treatmentId") Long treatmentId, @RequestBody TreatmentRequest input) {
         return treatmentService.update(treatmentId, input);
     }
 }
