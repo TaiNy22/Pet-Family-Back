@@ -75,17 +75,15 @@ public class TaskService implements ITaskService {
         User user = userRepository.findById(input.getUserId()).orElse(null);
         instance.setUser(user);
 
+        itemTaskService.deleteByTask(instance);
+
         for (int i = 0; i < input.getItems().size(); i++) {
             ItemTask itemInstance = new ItemTask();
             itemInstance.setDone(input.getItems().get(i).getDone());
             itemInstance.setDescription(input.getItems().get(i).getDescription());
             itemInstance.setTask(instance);
 
-            if (input.getItems().get(i).getId() == null) {
-                itemTaskService.save(itemInstance);
-            } else {
-                itemTaskService.update(input.getItems().get(i).getId(), itemInstance);
-            }
+            itemTaskService.save(itemInstance);
         }
 
         return taskRepository.save(instance);

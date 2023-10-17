@@ -33,6 +33,15 @@ public class ItemTaskService implements IItemTaskService {
     }
 
     @Override
+    public void deleteByTask(Task task) {
+        List<ItemTask> itemTaskList = itemTaskRepository.findItemTasksByTask(task);
+
+        itemTaskList.forEach(itemTask -> {
+            deleteById(itemTask.getId());
+        });
+    }
+
+    @Override
     public List<ItemTask> findAll() {
         return itemTaskRepository.findAll();
     }
