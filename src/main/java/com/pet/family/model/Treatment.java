@@ -28,6 +28,9 @@ public class Treatment {
     @Column(name = "date")
     private Date date;
 
+    @Column(name = "nextdate")
+    private Date nextDate;
+
     @Column(name = "createddate", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;

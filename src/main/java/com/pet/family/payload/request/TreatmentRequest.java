@@ -18,5 +18,7 @@ public class TreatmentRequest {
 
     private Date date;
 
+    private Date nextDate;
+
     private Long petId;
 }

@@ -18,9 +18,11 @@ public class TreatmentResponse {
 
     private String description;
 
+    private Date nextDate;
+
+    private Pet pet;
+
     private String title;
 
     private Date createdDate;
-
-    private Pet pet;
 }

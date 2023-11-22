@@ -54,6 +54,7 @@ public class TreatmentService implements ITreatmentService {
                 instance.setDescription(treatment.getDescription());
                 instance.setCreatedDate(treatment.getCreatedDate());
                 instance.setDate(treatment.getDate());
+                instance.setNextDate(treatment.getNextDate());
                 instance.setPet(pet);
 
                 treatmentResponses.add(instance);
@@ -67,6 +68,7 @@ public class TreatmentService implements ITreatmentService {
     public Treatment save(TreatmentRequest input) {
         Treatment instance = new Treatment();
         instance.setDate(input.getDate());
+        instance.setNextDate(input.getNextDate());
         instance.setDescription(input.getDescription());
         instance.setTitle(input.getTitle());
 
@@ -80,6 +82,7 @@ public class TreatmentService implements ITreatmentService {
     public TreatmentResponse update(Long id, TreatmentRequest input) {
         Treatment instance = treatmentRepository.findById(id).orElse(null);
         instance.setDate(input.getDate());
+        instance.setNextDate(input.getNextDate());
         instance.setDescription(input.getDescription());
         instance.setTitle(input.getTitle());
 
@@ -91,6 +94,7 @@ public class TreatmentService implements ITreatmentService {
         TreatmentResponse response = new TreatmentResponse();
         response.setId(instance.getId());
         response.setDate(instance.getDate());
+        response.setNextDate(instance.getNextDate());
         response.setDescription(instance.getDescription());
         response.setPet(pet);
         response.setTitle(instance.getTitle());
