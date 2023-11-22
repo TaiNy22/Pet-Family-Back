@@ -22,4 +22,6 @@ public interface ITipService {
     public Tip update(Long id, TipRequest input);
 
     public List<Tip> findByType(PetType input);
+
+    public Tip findRandom();
 }

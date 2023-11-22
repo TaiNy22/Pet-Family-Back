@@ -24,8 +24,8 @@ public class Tip {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "image")
-    private String image;
+//    @Column(name = "image")
+//    private String image;
 
     @Column(name = "type")
     private PetType type;

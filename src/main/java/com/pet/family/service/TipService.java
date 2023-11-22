@@ -46,14 +46,14 @@ public class TipService implements ITipService {
         instance.setTitle(input.getTitle());
         instance.setType(input.getType());
 
-        if (!input.getImage().isEmpty()) {
-            if (input.getImage() != null) {
-                uploadFileService.delete(input.getTitle());
-            }
-        }
+//        if (!input.getImage().isEmpty()) {
+//            if (input.getImage() != null) {
+//                uploadFileService.delete(input.getTitle());
+//            }
+//        }
 
-        String uniqueFileName = uploadFileService.copy(input.getImage());
-        instance.setImage(uniqueFileName);
+//        String uniqueFileName = uploadFileService.copy(input.getImage());
+//        instance.setImage(uniqueFileName);
 
         return tipRepository.save(instance);
     }
@@ -71,5 +71,12 @@ public class TipService implements ITipService {
     @Override
     public List<Tip> findByType(PetType input) {
         return tipRepository.findTipByType(input);
+    }
+
+    @Override
+    public Tip findRandom() {
+        List<Tip> list = tipRepository.findAll();
+        int tipIndex = (int)(Math.random()*list.size());
+        return tipRepository.getById(list.get(tipIndex).getId());
     }
 }

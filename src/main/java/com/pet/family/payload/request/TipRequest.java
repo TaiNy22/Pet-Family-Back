@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class TipRequest {
     private String content;
 
-    private MultipartFile image;
+//    private MultipartFile image;
 
     private String title;
 

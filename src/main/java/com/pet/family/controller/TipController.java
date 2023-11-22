@@ -45,6 +45,11 @@ public class TipController {
         return tipService.update(tipId, input);
     }
 
+    @GetMapping("/random")
+    public Tip getTipRandom() {
+        return tipService.findRandom();
+    }
+
     @GetMapping("/type")
     public List<Tip> getByType(@RequestBody String input) {
         PetType petType = PetType.ALL;
