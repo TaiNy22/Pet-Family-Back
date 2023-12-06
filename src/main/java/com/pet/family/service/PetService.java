@@ -1,8 +1,10 @@
 package com.pet.family.service;
 
+import com.pet.family.model.Image;
 import com.pet.family.model.Pet;
 import com.pet.family.model.User;
 import com.pet.family.payload.request.PetRequest;
+import com.pet.family.repository.ImageRepository;
 import com.pet.family.repository.PetRepository;
 import com.pet.family.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class PetService implements IPetService {
     @Autowired
     private UserRepository userRepository;
 
+    private ImageRepository imageRepository;
+
     public PetService(PetRepository petRepository) {
         this.petRepository = petRepository;
     }
@@ -32,7 +36,11 @@ public class PetService implements IPetService {
 
     @Override
     public void deleteById(Long id) {
+        Pet instance = petRepository.findById(id).orElse(null);
+        Image image = imageRepository.findByName(instance.getAvatar()).orElse(null);
+        imageRepository.deleteById(image.getId());
         petRepository.deleteById(id);
+
     }
 
     @Override
