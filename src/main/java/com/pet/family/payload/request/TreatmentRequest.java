@@ -21,4 +21,6 @@ public class TreatmentRequest {
     private Date nextDate;
 
     private Long petId;
+
+    private String reminder;
 }

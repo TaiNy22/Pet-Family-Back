@@ -96,6 +96,10 @@ public class UserDetailsImpl implements UserDetails {
         return lastname;
     }
 
+    public Long getPhone() {
+        return phone;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

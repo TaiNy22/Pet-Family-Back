@@ -26,6 +26,9 @@ public class Pet {
     @Column(name = "age")
     private Long age;
 
+    @Column(name = "ageType")
+    private String ageType;
+
     @Column(name = "gender")
     private String gender;
 

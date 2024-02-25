@@ -21,4 +21,6 @@ public interface ITreatmentService {
     public TreatmentResponse update(Long id, TreatmentRequest input);
 
     List<Treatment> treatmentsByPetId(Long petId);
+
+    List<TreatmentResponse> treatmentsByUser(Long userId);
 }

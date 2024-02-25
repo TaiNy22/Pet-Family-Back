@@ -52,6 +52,7 @@ public class PetService implements IPetService {
     public Pet save(PetRequest input) {
         Pet instance = new Pet();
         instance.setAge(input.getAge());
+        instance.setAgeType(input.getAgeType());
         instance.setName(input.getName());
         instance.setGender(input.getGender());
         instance.setAvatar(input.getAvatar());
@@ -69,6 +70,7 @@ public class PetService implements IPetService {
     public Pet update(Long id, PetRequest input) {
         Pet instance = petRepository.findById(id).orElse(null);
         instance.setAge(input.getAge());
+        instance.setAgeType(input.getAgeType());
         instance.setName(input.getName());
         instance.setGender(input.getGender());
         instance.setAvatar(input.getAvatar());

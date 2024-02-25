@@ -12,6 +12,8 @@ import lombok.Setter;
 public class PetRequest {
     private Long age;
 
+    private String ageType;
+
     private String avatar;
 
     private String gender;

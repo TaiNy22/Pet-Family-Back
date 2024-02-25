@@ -48,4 +48,9 @@ public class TreatmentController {
     public TreatmentResponse update(@PathVariable("treatmentId") Long treatmentId, @RequestBody TreatmentRequest input) {
         return treatmentService.update(treatmentId, input);
     }
+
+    @GetMapping(value = "/user/{userId}")
+    public List<TreatmentResponse> treatmentsByUser(@PathVariable("userId") Long userId) {
+        return treatmentService.treatmentsByUser(userId);
+    }
 }

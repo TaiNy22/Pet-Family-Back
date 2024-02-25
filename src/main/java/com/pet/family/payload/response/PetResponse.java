@@ -16,6 +16,8 @@ public class PetResponse {
 
     private Long age;
 
+    private String ageType;
+
     private String avatar;
 
     private String gender;

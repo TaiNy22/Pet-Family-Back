@@ -31,6 +31,9 @@ public class Treatment {
     @Column(name = "nextdate")
     private Date nextDate;
 
+    @Column(name = "reminder")
+    private String reminder;
+
     @Column(name = "createddate", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;

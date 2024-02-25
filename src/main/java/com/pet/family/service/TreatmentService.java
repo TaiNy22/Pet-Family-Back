@@ -2,12 +2,12 @@ package com.pet.family.service;
 
 import com.pet.family.model.Pet;
 import com.pet.family.model.Treatment;
-import com.pet.family.model.Vaccine;
+import com.pet.family.model.User;
 import com.pet.family.payload.request.TreatmentRequest;
 import com.pet.family.payload.response.TreatmentResponse;
-import com.pet.family.payload.response.VaccineResponse;
 import com.pet.family.repository.PetRepository;
 import com.pet.family.repository.TreatmentRepository;
+import com.pet.family.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +23,9 @@ public class TreatmentService implements ITreatmentService {
 
     @Autowired
     private PetRepository petRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public TreatmentService(TreatmentRepository treatmentRepository) {
         this.treatmentRepository = treatmentRepository;
@@ -85,6 +88,7 @@ public class TreatmentService implements ITreatmentService {
         instance.setNextDate(input.getNextDate());
         instance.setDescription(input.getDescription());
         instance.setTitle(input.getTitle());
+        instance.setReminder(input.getReminder());
 
         Pet pet = petRepository.findById(input.getPetId()).orElse(null);
         instance.setPet(pet);
@@ -103,9 +107,37 @@ public class TreatmentService implements ITreatmentService {
     }
 
     @Override
-    public List<Treatment> treatmentsByPetId(Long userId) {
-        Pet pet = petRepository.findById(userId).orElse(null);
+    public List<Treatment> treatmentsByPetId(Long petId) {
+        Pet pet = petRepository.findById(petId).orElse(null);
 
         return treatmentRepository.findTreatmentsByPet(pet);
+    }
+
+    @Override
+    public List<TreatmentResponse> treatmentsByUser(Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+
+        List<Pet> petsByUser = petRepository.findPetByUser(user);
+
+        List<TreatmentResponse> treatments = new ArrayList<>();
+
+        petsByUser.forEach(pet -> {
+            List<Treatment> treatmentInstance = treatmentRepository.findTreatmentsByPet(pet);
+
+            treatmentInstance.forEach(treatment -> {
+                TreatmentResponse treatmentResponse = new TreatmentResponse();
+                treatmentResponse.setId(treatment.getId());
+                treatmentResponse.setDate(treatment.getDate());
+                treatmentResponse.setDescription(treatment.getDescription());
+                treatmentResponse.setCreatedDate(treatment.getCreatedDate());
+                treatmentResponse.setNextDate(treatment.getNextDate());
+                treatmentResponse.setTitle(treatment.getTitle());
+                treatmentResponse.setPet(pet);
+
+                treatments.add(treatmentResponse);
+            });
+        });
+
+        return treatments;
     }
 }
